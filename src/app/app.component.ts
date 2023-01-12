@@ -18,7 +18,7 @@ export class AppComponent {
   click: boolean = false
 
   addNumber(num: any) {
-    if (this.display === '') {
+    if (this.display === '' || this.display === '0') {
       this.display = num.toString()
       this.checkNumLength()
     }
@@ -29,18 +29,24 @@ export class AppComponent {
   }
 
   action(sign: any) {
-    this.click = false
- 
 
-    if (this.displayHistory.split(' ').length === 2) {
-      this.firstNumber = this.displayHistory.split(' ')[0]
+    if (this.displayHistory.split(' ').length === 2 && this.display) {
+      this.result()  
+      this.firstNumber = this.display
+    } else if (this.displayHistory.split(' ').length === 2 && !this.display) {
+      this.firstNumber = this.displayHistory.split(' ')[0]   
     } else {
       this.firstNumber = this.display
     }
-    this.actionSign = sign
-    this.displayHistory = this.firstNumber + ' ' + this.actionSign
 
-   
+    if (!this.firstNumber) {
+      this.displayHistory = sign
+      this.firstNumber = 0
+    } else {
+      this.displayHistory = this.firstNumber + ' ' + sign  
+    }
+    
+    this.actionSign = sign
     this.display = ''
   }
 
@@ -75,7 +81,7 @@ export class AppComponent {
   }
 
   checkNumLength() {
-    console.log(this.display, this.display.toString().length)
+
     this.numLength = this.display.toString().length
     if (this.numLength < 7) {
       this.fontSize = '62px'

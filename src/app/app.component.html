@@ -29,10 +29,10 @@
           <button class="button-action" (click)="result()">=</button>
         </div>
         <div class="col-signs">
-          <button class="button-action" (click)="action('+')">+</button>
-          <button class="button-action" (click)="action('-')">-</button>
-          <button class="button-action" (click)="action('x')">x</button>
-          <button class="button-action" (click)="action('/')">/</button>
+          <button class="button-action" (click)="action('+')" [disabled]="click">+</button>
+          <button class="button-action" (click)="action('-')" [disabled]="click">-</button>
+          <button class="button-action" (click)="action('x')" [disabled]="click">x</button>
+          <button class="button-action" (click)="action('/')" [disabled]="click">/</button>
         </div>
       </div>
     </div>
